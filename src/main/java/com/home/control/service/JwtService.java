@@ -64,6 +64,8 @@ public class JwtService implements IJwt{
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
 				.signWith(getSigningKey(),SignatureAlgorithm.HS256)
 				.compact();
+		
+		
 	}
 
 	@Override

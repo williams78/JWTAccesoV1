@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import com.home.control.model.FieldsString;
 import com.home.control.model.FieldsValues;
+import com.home.control.model.FieldsValuesS;
 
 import lombok.RequiredArgsConstructor;
 
@@ -210,6 +211,17 @@ private boolean ValidationString(String field, FieldsValues[] object) {
 	}
 	
 	return res;
+}
+
+@Override
+public <T> Optional<String> FindByRecordsString(FieldsValuesS[] object, Class<T> clase) {
+	String sql = "Select gnumberhome from " + clase.getSimpleName() + " where " + object[0].getNamefield() + " = ?"    ;
+	
+	try {
+		return Optional.ofNullable(jdbcTemplate.queryForObject(sql,String.class,object[0].getId() ));
+	}catch(EmptyResultDataAccessException e) {
+		return Optional.empty();
+	}
 }
 
 }

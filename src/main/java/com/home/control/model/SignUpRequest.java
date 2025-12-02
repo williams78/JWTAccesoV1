@@ -16,7 +16,8 @@ public class SignUpRequest {
 	private ERole role;
 	private String phone;
 	private String email;
-    
+    private String nombre;
+    private String numberhome;
 	
 	
 }
