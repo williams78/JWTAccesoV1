@@ -35,13 +35,13 @@ public class AuthenticationService implements IAuthentication{
     
 	@Override
 	public JwtAuthenticationResponse signup(SignUpRequest request) {
+		
 	
-	String i = "";
 	object[0] = new FieldsValuesS(request.getNumberhome().toString(),Fieldsp[2].getName());
 	Optional<String> p = customRepository.FindByRecordsString(object, Generales.class);	
 	Optional<User> findby =userRepository.findByFiels(request.getUsername(), request.getEmail(), request.getPhone());
 	
-	if (p.isEmpty() || findby.isEmpty()) {
+	if (p.isEmpty() && findby.isEmpty()) {
 		
 	var user = User.builder(). username(request.getUsername())
 			    .password(passwordEncoder.encode(request.getPassword()))
@@ -60,23 +60,17 @@ public class AuthenticationService implements IAuthentication{
 			.build();
 	
 	customRepository.SaveRecord(generales);
-	
+	    
         var jwt = jwtService. generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).build();
 	}
-	    if(request.getUsername().equals(findby.get().getUsername())) {
-	    	i="1";
-	    }
-	    if(request.getEmail().equals(findby.get().getEmail())) {
-	    	i=i+"2";
-	    }
-	    if(request.getPhone().equals(findby.get().getPhone())) {
-	    	i=i+"3";
-	    }
-	    if(request.getNumberhome().equals(p.get())) {
-	    	i=i+"4";
-	    }
-        return JwtAuthenticationResponse.builder().token(null).valid(i).build();
+	else {
+		 
+		
+        return JwtAuthenticationResponse.builder().token(null)
+        		.message(validation(findby,p,request))
+        		.build();
+	}
 	}	
 	
 
@@ -96,4 +90,29 @@ public class AuthenticationService implements IAuthentication{
         return JwtAuthenticationResponse.builder().token(jwt).build();
 	}
 
+	private String validation(Optional<User> user, Optional<String> p,SignUpRequest request) {
+		
+		String message="";
+		
+		if (!user.isEmpty()) {
+			
+			 if (user.get().getUsername().equals(request.getUsername())) {
+				 message = " Usuario";
+			 }
+			 if (user.get().getEmail().equals(request.getEmail())) {
+				 message = message + " Email";
+			 }
+			 if (user.get().getPhone().equals(request.getPhone())) {
+				 message = message + " Celular";
+			 }
+		}
+		
+		if (!p.isEmpty()) {
+			message =  message + " Número Casa";
+		}
+		
+		
+		return message;
+	}
+	
 }
