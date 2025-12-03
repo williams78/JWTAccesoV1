@@ -50,13 +50,11 @@ public class AuthenticationService implements IAuthentication{
                 .email(request.getEmail())
                 .build();
         
-		userRepository.save(user);
-		
-		Optional<User> userid = userRepository.findByusername(request.getUsername());
+		User u = userRepository.save(user);
 		
 	var generales = Generales.builder(). gname(request.getNombre())
 			.gnumberhome(request.getNumberhome())
-			.iduser(userid.get().getId())
+			.iduser(u.getId())
 			.build();
 	
 	customRepository.SaveRecord(generales);
