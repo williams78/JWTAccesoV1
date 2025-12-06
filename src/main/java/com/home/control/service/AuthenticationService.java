@@ -36,7 +36,7 @@ public class AuthenticationService implements IAuthentication{
 	@Override
 	public JwtAuthenticationResponse signup(SignUpRequest request) {
 	
-	String i = "";
+	String i = ""; 
 	object[0] = new FieldsValuesS(request.getNumberhome().toString(),Fieldsp[2].getName());
 	Optional<String> p = customRepository.FindByRecordsString(object, Generales.class);	
 	Optional<User> findby =userRepository.findByFiels(request.getUsername(), request.getEmail(), request.getPhone());
