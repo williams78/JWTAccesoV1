@@ -1,6 +1,7 @@
 package com.home.control.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,11 +25,13 @@ public class AuthenticationController {
 
 	private final IAuthentication authenticationService;
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/register")
 	public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody SignUpRequest request){
 		
 		return ResponseEntity.ok(authenticationService.signup(request));		
 	}
+	
 	
 	@GetMapping("/login")
 	public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest request){
