@@ -47,4 +47,8 @@ public class ProductoController {
 		return ResponseEntity.ok(productos.update(productosDto));
 	}
 	
+	 @GetMapping("/profile")
+	    public String profile() {
+	        return "Perfil de usuario";
+	    }
 }

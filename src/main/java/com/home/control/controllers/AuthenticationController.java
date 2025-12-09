@@ -25,7 +25,7 @@ public class AuthenticationController {
 
 	private final IAuthentication authenticationService;
 
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	@PostMapping("/register")
 	public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody SignUpRequest request){
 		

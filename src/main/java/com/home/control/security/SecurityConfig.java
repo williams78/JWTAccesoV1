@@ -35,7 +35,8 @@ public class SecurityConfig {
 		httpSecurity.csrf(AbstractHttpConfigurer::disable);
 		httpSecurity.cors(cor->cor.disable()).
 					authorizeHttpRequests(request->request.requestMatchers("/api/acceso/auth/**").permitAll().
-							requestMatchers("/api/inv/produc/**").permitAll().
+							requestMatchers("/api/acceso/admin/**").hasRole("ADMIN").
+							requestMatchers("/api/inv/produc/**").hasAnyRole("USER","ADMIN").
 							anyRequest().authenticated()).
 					sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			         .authenticationProvider(authenticationProvider()).addFilterBefore(

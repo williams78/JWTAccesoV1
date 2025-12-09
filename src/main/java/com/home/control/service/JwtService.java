@@ -63,6 +63,8 @@ public class JwtService implements IJwt{
 		
 		return Jwts.builder()
 				.setClaims(extraClaims)
+				.claim("roles", userDetails.getAuthorities().stream()
+						.map(GrantedAuthority::getAuthority).toList())
 				.setSubject(userDetails.getUsername())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
@@ -84,5 +86,9 @@ public class JwtService implements IJwt{
 
 	private Date extractExpiration(String token) {
 		return extractClaim(token, Claims::getExpiration);
+	}
+	
+	public List<String> extractRoles(String token){
+		return extracAllClaims(token).get("roles",List.class);
 	}
 }

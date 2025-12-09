@@ -93,7 +93,7 @@ public class AuthenticationService implements IAuthentication{
 			 if (user.get().getResidentes().getRsemail().equals(request.getEmail())) {
 				 message = message + " Email";
 			 }
-			 if (user.get().getResidentes().equals(request.getPhone())) {
+			 if (user.get().getResidentes().getRsphone().equals(request.getPhone())) {
 				 message = message + " Celular";
 			 }
 			 if (user.get().getResidentes().getRsvivienda().equals(request.getNumberhome())) {
