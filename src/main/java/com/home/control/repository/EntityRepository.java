@@ -19,4 +19,5 @@ public interface EntityRepository {
 	<T> int UpdateRecord(T update, FieldsValues[] object);
 	<T> T FindUserName(String userName, Class<?> clase);
 	<T> Optional<String> FindByRecordsString(FieldsValuesS[] object, Class<T> clase);
+	<T> List<T> getRecordsStatus( Class<T> clazz , FieldsString[] object);
 }

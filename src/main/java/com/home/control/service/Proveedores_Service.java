@@ -54,4 +54,10 @@ public class Proveedores_Service implements Generic_crud<ProveedoresDto>{
 		return 0;
 	}
 
+	@Override
+	public List<ProveedoresDto> getStatus(String data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

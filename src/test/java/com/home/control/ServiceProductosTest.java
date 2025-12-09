@@ -154,7 +154,7 @@ class ServiceProductosTest {
 		Field[] Fieldsp = Productos.class.getDeclaredFields(); 
 		FieldsString object[] = new FieldsString[1];
 		
-		object[0] = new FieldsString("CLORO",Fieldsp[1].getName());
+		//object[0] = new FieldsString("CLORO",Fieldsp[1].getName());
 		when(customRepository.getRecordsContaning(Productos.class, object)).thenReturn(products);
 		
 		List<ProductosDto> foundProducts = productos_Service.getNameContaning("CLORO");

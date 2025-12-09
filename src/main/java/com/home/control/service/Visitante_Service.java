@@ -42,7 +42,7 @@ public class Visitante_Service implements Generic_crud<VisitaDto>{
 	
 	@Override
 	public List<VisitaDto> getNameContaning(String data) {
-		obj[0] = new FieldsString(data,Fieldsp[1].getName());
+		obj[0] = new FieldsString(data,Fieldsp[1].getName(),false);
 		return vimp.visitanteEntitiesToVisitanteDto(customRepository.getRecordsContaning(Visitas.class,obj));
 	}
 	
@@ -58,8 +58,14 @@ public class Visitante_Service implements Generic_crud<VisitaDto>{
 		object[0] = new FieldsValues(ori.getViid(),Fieldsp[0].getName());
 		return customRepository.UpdateRecord(ori,object);
 	}
-	
 
+	@Override
+	public List<VisitaDto> getStatus(boolean data) {
+		obj[0] = new FieldsString("Arroz",Fieldsp[5].getName(),data);
+		return vimp.visitanteEntitiesToVisitanteDto(customRepository.getRecordsStatus(Visitas.class, obj));
+	}
+	
+	
 
 
 	

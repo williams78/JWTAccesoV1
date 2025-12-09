@@ -23,8 +23,8 @@ public class ResidentesController {
 	private final Visitante_Service service;
 	
 	@GetMapping("/list")
-	public ResponseEntity<List<VisitaDto>> getVisitante(){
-		return ResponseEntity.ok(service.getAll());
+	public ResponseEntity<List<VisitaDto>> getVisitante(@RequestParam(required = true) boolean data){
+		return ResponseEntity.ok(service.getStatus(data));
 	}
 	
 	@GetMapping("/findId")

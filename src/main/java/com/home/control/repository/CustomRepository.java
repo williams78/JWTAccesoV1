@@ -224,4 +224,9 @@ public <T> Optional<String> FindByRecordsString(FieldsValuesS[] object, Class<T>
 	}
 }
 
+@Override
+public <T> List<T> getRecordsStatus(Class<T> clazz, FieldsString[] object) { 
+	return jdbcTemplate.query("Select * from " + clazz.getSimpleName() + " where " + object[0].getNamefield() +"=" + object[0].isValueb() , new LombokRowMapper<T>(clazz));
+}
+
 }

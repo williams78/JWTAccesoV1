@@ -41,7 +41,7 @@ public class Productos_Service implements Generic_crud<ProductosDto>{
 
 	@Override
 	public List<ProductosDto> getNameContaning(String data) {
-		obj[0] = new FieldsString(data,Fieldsp[1].getName());
+		obj[0] = new FieldsString(data,Fieldsp[1].getName(),false);
 		return pm.productosEntitiesToProductosDtos(repository.getRecordsContaning(Productos.class,obj));
 	}
 
@@ -59,6 +59,14 @@ public class Productos_Service implements Generic_crud<ProductosDto>{
 		Productos ori = pm.productosDtoToproductos(d);
 		object[0] = new FieldsValues(ori.getPddi(),Fieldsp[0].getName());
 		return repository.UpdateRecord(ori,object);
+	}
+
+
+
+	@Override
+	public List<ProductosDto> getStatus(boolean data) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

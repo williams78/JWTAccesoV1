@@ -12,6 +12,7 @@ public class FieldsString {
 
 		private String value;
 		private String namefield;
+		private boolean valueb;
 		
 
 }
