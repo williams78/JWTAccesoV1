@@ -2,8 +2,6 @@ package com.home.control.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.home.control.interfaz.IAuthentication;
-
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.CrossOrigin;

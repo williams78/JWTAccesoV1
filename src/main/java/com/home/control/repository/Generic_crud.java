@@ -7,7 +7,7 @@ public interface Generic_crud<D> {
 	List<D> getAll();
 	D findById(Long id);
 	List<D> getNameContaning(String data);
-	int save(D d);
+	String save(D d);
 	int update(D d);
 	
 	

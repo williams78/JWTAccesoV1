@@ -30,23 +30,19 @@ public class AuthenticationService implements IAuthentication{
     
 	@Override
 	public JwtAuthenticationResponse signup(SignUpRequest request) {
-		
 	
-
-
-	Optional<User> findby =userRepository.findByFiels(request.getUsername(), request.getEmail(), request.getPhone());
-	//p.isEmpty() &&
-	if ( findby.isEmpty()) {
+		Optional<User> findby =userRepository.findByFiels(request.getUsername(), request.getEmail(), request.getPhone());
+	
+		if ( findby.isEmpty()) {
 		
-	    
-	var residentes = Residentes.builder()
+	        var residentes = Residentes.builder()
 			.rsname(request.getNombre())
 			.rsemail(request.getEmail())
 			.rsphone(request.getPhone())
 			.rsvivienda(request.getNumberhome())
 			.build();
 	
-	var user = User.builder(). username(request.getUsername())
+	        var user = User.builder(). username(request.getUsername())
 		    .password(passwordEncoder.encode(request.getPassword()))
             .role(request.getRole())
             .usstatus(true)
@@ -54,9 +50,13 @@ public class AuthenticationService implements IAuthentication{
             .build();
 					
 		userRepository.save(user);
-
-        var jwt = jwtService. generateToken(user);
-        return JwtAuthenticationResponse.builder().token(jwt).build();
+		
+		var jwt = jwtService. generateToken(user);
+        return JwtAuthenticationResponse.builder().token(jwt)
+        		.username(user.getUsername())
+        		.identificador(user.getUsid())
+        		.build();
+        
 		}else {
         return JwtAuthenticationResponse.builder().token(null)
         		.message(validation(findby,request))
@@ -78,7 +78,10 @@ public class AuthenticationService implements IAuthentication{
         	 
         
         var jwt = jwtService.generateToken(user);
-        return JwtAuthenticationResponse.builder().token(jwt).build();
+        return JwtAuthenticationResponse.builder().token(jwt)
+        		.username(user.getUsername())
+        		.identificador(user.getUsid())
+        		.build();
 	}
 
 	private String validation(Optional<User> user,SignUpRequest request) {

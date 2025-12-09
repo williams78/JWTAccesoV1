@@ -43,8 +43,9 @@ public class Proveedores_Service implements Generic_crud<ProveedoresDto>{
 	}
 
 	@Override
-	public int save(ProveedoresDto d) {
-		return repository.SaveRecord(pm.proveedoresDtoToproveedores(d));
+	public String save(ProveedoresDto d) {
+		int g =  repository.SaveRecord(pm.proveedoresDtoToproveedores(d));
+		return (g==1)?"Guardado con Exito":"Error al Guardar";
 	}
 
 	@Override

@@ -47,10 +47,10 @@ public class Productos_Service implements Generic_crud<ProductosDto>{
 
 
 	@Override
-	public int save(ProductosDto d) {
+	public String save(ProductosDto d) {
 		int g = repository.SaveRecord(pm.productosDtoToproductos(d));
 	    System.out.println(g);
-		return g;
+		 return (g==1)?"Guardo con Exito":"Error al Guardar";
 	}
 
 

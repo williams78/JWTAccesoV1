@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -89,6 +88,13 @@ public class JwtService implements IJwt{
 	}
 	
 	public List<String> extractRoles(String token){
-		return extracAllClaims(token).get("roles",List.class);
+		Claims claims = extracAllClaims(token);
+		List<?> rawList = claims.get("roles",List.class);
+		
+		List<String> list = rawList.stream().filter(String.class::isInstance)
+				.map(String.class::cast)
+				.collect(Collectors.toList());
+		
+		return list;
 	}
 }

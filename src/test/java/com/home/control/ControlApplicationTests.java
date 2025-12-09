@@ -41,7 +41,7 @@ public class ControlApplicationTests {
 		dto.setNombre("Clarasol");
 		dto.setPresentacion("BOX101");
 		
-		System.out.println((crud.save(dto)==1)?"Exito":"Fracaso");
+		//System.out.println((crud.save(dto)==1)?"Exito":"Fracaso");
 		
 	}
 

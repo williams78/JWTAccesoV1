@@ -36,7 +36,7 @@ public class SecurityConfig {
 		httpSecurity.cors(cor->cor.disable()).
 					authorizeHttpRequests(request->request.requestMatchers("/api/acceso/auth/**").permitAll().
 							requestMatchers("/api/acceso/admin/**").hasRole("ADMIN").
-							requestMatchers("/api/inv/produc/**").hasAnyRole("USER","ADMIN").
+							requestMatchers("/api/acceso/residentes/**").hasAnyRole("USER","ADMIN").
 							anyRequest().authenticated()).
 					sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			         .authenticationProvider(authenticationProvider()).addFilterBefore(

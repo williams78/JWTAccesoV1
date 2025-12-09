@@ -14,7 +14,9 @@ public class JwtAuthenticationResponse {
 
 	private String token;
     private String message;
-		
+	private String username;
+	private Long identificador;
+	
 }
 	
 
