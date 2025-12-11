@@ -14,9 +14,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.home.control.model.FieldsString;
 import com.home.control.model.FieldsValues;
 import com.home.control.model.FieldsValuesS;
+
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -38,6 +39,11 @@ public class CustomRepository implements EntityRepository{
 			return null;
 		}
 	}
+	
+	@Override
+	public <T> List<T> getAllRecordStatus(Class<T> clazz, FieldsValues[] object) { 
+		return jdbcTemplate.query("Select * from " + clazz.getSimpleName() + " where " + object[0].getNamefield() +"=" + object[0].getValue() , new LombokRowMapper<T>(clazz));
+	}
 
 	@Override
 	public <T> int SaveRecord(T save) {
@@ -58,7 +64,7 @@ public class CustomRepository implements EntityRepository{
 	@Override
 	public <T> Optional<T> FindByRecord(FieldsValues[] object, Class<T> clase) {
 		
-		String sql = "Select * from " + clase.getSimpleName() + " where " + object[0].getNamefield() + " = " + object[0].getId();
+		String sql = "Select * from " + clase.getSimpleName() + " where " + object[0].getNamefield() + " = " + object[0].getValue();
 		try {
 			return Optional.ofNullable(jdbcTemplate.queryForObject(sql, new LombokRowMapper<>(clase)));
 		}catch(EmptyResultDataAccessException e) {
@@ -128,7 +134,7 @@ public class CustomRepository implements EntityRepository{
 	}
 
 	@Override
-	public <T> List<T> getRecordsContaning(Class<T> clazz, FieldsString[] object) {
+	public <T> List<T> getRecordsContaning(Class<T> clazz, FieldsValues[] object) {
 		return jdbcTemplate.query("Select * from " + clazz.getSimpleName() + " where " + object[0].getNamefield() +" ilike '%" + object[0].getValue() + "%'", new LombokRowMapper<T>(clazz));
 	}
 
@@ -158,10 +164,10 @@ public class CustomRepository implements EntityRepository{
         	 
         	 if(j==0) {
         		 sqle = sqle.append(" where ").append(object[j].getNamefield().toString()).append(" = ")
-        				 .append(object[j].getId().toString()); 
+        				 .append(object[j].getValue().toString()); 
         	 }else {
         		 
-        		 sqle.append(" and ").append(object[j].getNamefield()).append("=").append(object[j].getId());
+        		 sqle.append(" and ").append(object[j].getNamefield()).append("=").append(object[j].getValue());
         	 }
         	 
          }
@@ -224,9 +230,20 @@ public <T> Optional<String> FindByRecordsString(FieldsValuesS[] object, Class<T>
 	}
 }
 
-@Override
-public <T> List<T> getRecordsStatus(Class<T> clazz, FieldsString[] object) { 
-	return jdbcTemplate.query("Select * from " + clazz.getSimpleName() + " where " + object[0].getNamefield() +"=" + object[0].isValueb() , new LombokRowMapper<T>(clazz));
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

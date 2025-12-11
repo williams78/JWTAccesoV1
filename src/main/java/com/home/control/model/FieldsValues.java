@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FieldsValues {
 
-	private Long id;
+	//private Long id;
 	private String namefield;
-	
+	private String value;
 }
