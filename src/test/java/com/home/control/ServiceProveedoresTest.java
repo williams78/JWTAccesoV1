@@ -22,7 +22,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.home.control.dto.ProductosDto;
 import com.home.control.entity.Productos;
 import com.home.control.entity.Proveedores;
-import com.home.control.model.FieldsString;
 import com.home.control.model.FieldsValues;
 import com.home.control.repository.CustomRepository;
 import com.home.control.service.Productos_Service;
@@ -142,7 +141,7 @@ class ServiceProveedoresTest {
 		List<Productos> products = Arrays.asList(p1,p2);
 		
 		Field[] Fieldsp = Productos.class.getDeclaredFields(); 
-		FieldsString object[] = new FieldsString[1];
+		//FieldsString object[] = new FieldsString[1];
 		
 		//object[0] = new FieldsString("CLORO",Fieldsp[1].getName());
 		//when(customRepository.getRecordsContaning(Productos.class, object)).thenReturn(products);

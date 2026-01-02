@@ -42,7 +42,8 @@ public class CustomRepository implements EntityRepository{
 	
 	@Override
 	public <T> List<T> getAllRecordStatus(Class<T> clazz, FieldsValues[] object) { 
-		return jdbcTemplate.query("Select * from " + clazz.getSimpleName() + " where " + object[0].getNamefield() +"=" + object[0].getValue() , new LombokRowMapper<T>(clazz));
+		String sql = "Select * from " + clazz.getSimpleName() + " where " + object[0].getNamefield() +"=" + object[0].getValue() + " and "+ object[1].getNamefield() +" >= to_date('" + object[1].getValue() + "','dd/mm/yyyy') and " + object[2].getNamefield() + " <= to_date('" + object[2].getValue() + "','dd/mm/yyyy')";
+		return jdbcTemplate.query(sql , new LombokRowMapper<T>(clazz));
 	}
 
 	@Override
@@ -57,7 +58,7 @@ public class CustomRepository implements EntityRepository{
             .append( " VALUES " )
             .append( "(" ).append( String.join( ",", Collections.nCopies( fieldsp.length, "?") ) ).append( ")" );
 		
-       System.out.println(fieldspValue);
+       
 		return jdbcTemplate.update(sql.toString(), fieldspValue);
 	}
 

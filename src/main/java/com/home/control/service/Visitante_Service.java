@@ -22,7 +22,7 @@ public class Visitante_Service implements Generic_crud<VisitaDto>{
 
 	private final CustomRepository customRepository;
 	private final VisitaMapper vimp = new VisitaMapperImpl();
-	private final FieldsValues object[] = new FieldsValues[1];
+	private final FieldsValues object[] = new FieldsValues[3];
 	private final Field[] Fieldsp = Visitas.class.getDeclaredFields();
 	
 	@Override
@@ -32,6 +32,8 @@ public class Visitante_Service implements Generic_crud<VisitaDto>{
 	
 	public List<VisitaDto> getStatus(Object data) {
 		object[0] = new FieldsValues(Fieldsp[5].getName(),data.toString());
+		object[1] = new FieldsValues(Fieldsp[7].getName(),"30/11/2025");
+		object[2] = new FieldsValues(Fieldsp[8].getName(),"30/12/2025");
 		return vimp.visitanteEntitiesToVisitanteDto(customRepository.getAllRecordStatus(Visitas.class, object));
 	}
 	
