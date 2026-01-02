@@ -32,13 +32,13 @@ public class Proveedores_Service implements Generic_crud<ProveedoresDto>{
 
 	@Override
 	public ProveedoresDto findById(Object id) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
  
 	@Override
 	public List<ProveedoresDto> getNameContaning(Object data) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
@@ -50,7 +50,7 @@ public class Proveedores_Service implements Generic_crud<ProveedoresDto>{
 
 	@Override
 	public int update(ProveedoresDto d) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
@@ -58,7 +58,7 @@ public class Proveedores_Service implements Generic_crud<ProveedoresDto>{
 
 		@Override
 	public List<ProveedoresDto> getStatus(Object data) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

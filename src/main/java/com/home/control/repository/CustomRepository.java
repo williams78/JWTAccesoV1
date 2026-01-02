@@ -130,8 +130,7 @@ public class CustomRepository implements EntityRepository{
 	
 	@Override
 	public <T> List<T> FindByRecords(FieldsValues[] object, Class<T> clase) {
-		// TODO Auto-generated method stub
-		return null;
+				return null;
 	}
 
 	@Override
@@ -181,7 +180,7 @@ public class CustomRepository implements EntityRepository{
 
 	@Override
 	public <T> T FindUserName(String userName, Class<?> clase) {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
 

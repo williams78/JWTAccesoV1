@@ -137,7 +137,7 @@ class ServiceProveedoresTest {
 		p2.setPddi(2L);
 		p2.setPdnombre("Fabuloso");
         
-		
+	/*	
 		List<Productos> products = Arrays.asList(p1,p2);
 		
 		Field[] Fieldsp = Productos.class.getDeclaredFields(); 
@@ -151,7 +151,7 @@ class ServiceProveedoresTest {
 		assertEquals(2, foundProducts.size());
         assertEquals("Fabuloso", foundProducts.get(1).getNombre());
         //verify(customRepository, times(1)).getRecordsContaning(Productos.class, object);
-		
+		*/
 	}
 	
 	

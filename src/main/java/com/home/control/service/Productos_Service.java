@@ -61,7 +61,7 @@ public class Productos_Service implements Generic_crud<ProductosDto>{
 
 	@Override
 	public List<ProductosDto> getStatus(Object data) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	} 
 
